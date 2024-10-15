@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 # Define the file formats to review
 file_formats=("$@")
@@ -8,7 +8,7 @@ current_date=$(date +%Y-%m-%d)
 
 # Create a markdown file for review
 review_file="review-$current_date.md"
-prompt="\n Review this code, provide suggestions for improvement, coding best practices, improve readability, and maintainability. Remove any code smells and anti-patterns. Provide code examples for your suggestion. Respond in markdown format. If the file does not have any code or does not need any changes, say 'No changes needed'."
+prompt="\n Review this code, provide suggestions for improvement, coding best practices, improve readability, and maintainability. Check the code against MISRA 2004 Guidelines for C, provide suggestions for how to improve compliance with guidelines. Remove any code smells and anti-patterns. Provide code examples for your suggestion. Respond in markdown format. If the file does not have any code or does not need any changes, say 'No changes needed'."
 touch "$review_file"
 
 # Function to review files
