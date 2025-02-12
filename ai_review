@@ -8,7 +8,7 @@ current_date=$(date +%Y-%m-%d)
 
 # Create a markdown file for review
 review_file="review-$current_date.md"
-prompt="\n Review this code, provide suggestions for improvement, coding best practices, improve readability, and maintainability. Check the code against MISRA 2004 Guidelines for C, provide suggestions for how to improve compliance with guidelines. Remove any code smells and anti-patterns. Provide code examples for your suggestion. Respond in markdown format. If the file does not have any code or does not need any changes, say 'No changes needed'."
+prompt="\n Review this code, provide suggestions for improvement, coding best practices, improve readability, and maintainability, and alignment with MISRA 2004 Guidelines for C. When making suggestions respond in Markdown format and include the line of the code suggestion location. Remove any code smells and anti-patterns. Provide code examples for your suggestions. Respond in markdown format. If the file does not have any doe or does not need any changes, say 'No changes needed'."
 touch "$review_file"
 
 # Function to review files
@@ -19,7 +19,7 @@ review_files() {
     for file in $files; do
         echo "Reviewing $file"
         content=$(cat "$file")
-        ollama_suggestions=$(ollama run deepseek-coder:6.7b-instruct "Code: $content $prompt")
+        ollama_suggestions=$(ollama run deepseek-coder-v2:lite "Code: $content $prompt")
 
         # Write suggestions to the review file
         echo "# Suggestions for $file" >> "$review_file"
